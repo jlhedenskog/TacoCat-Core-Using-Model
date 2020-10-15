@@ -1,0 +1,68 @@
+﻿@model TacoCat_Core_Using_Model.Models.TacoCatModel
+
+<h1>TacoCat</h1>
+
+
+<div class="row">
+    <div class="col">
+        <form asp-action="TacoCat">
+            <div class="row">
+                <div class="col">
+                    <input id="reverseString" type="text" name="userWord" />
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Reverse Me</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col h2 text-center">
+        Your reversed word will show below.
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center h1">
+        User Input Was: @Model.UserWord
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center h1">
+        Reversed Input Is: @Model.ReverseWord
+    </div>
+</div>
+
+@if (Model.Result == "success")
+{
+    <div>
+        <h1 class="card card-body bg-success text-center">Success! This is a palindrome!</h1>
+
+    </div>
+}
+else if (Model.Result == "fail")
+{
+    <div>
+        <h1 class="card card-body bg-danger text-center">Failure! This is not a palindrome!</h1>
+
+    </div>
+}
+
+<script type="text/javascript">
+    document.getElementById("reverseString").addEventListener("keypress", function (evt) {
+        var character = (evt.which) ? evt.which : evt.keyCode;
+        if (character >= 97 && character <= 122 ||
+            character >= 65 && character <= 90 || character == 13 || character == 32) {
+            evt.returnValue = true;
+        }
+        else {
+            evt.returnValue = false;
+        }
+    });
+</script>
